@@ -267,7 +267,6 @@ func (o *Generator) init() {
 		n, err := o.Random(b)
 		if err == nil {
 			storage.Sequence = Sequence(binary.BigEndian.Uint16(b))
-			log.Printf("uuid.Generator.init initialised random sequence: [%d]", storage.Sequence)
 
 		} else {
 			log.Printf("uuid.Generator.init: could not read random bytes into sequence - read [%d] %s", n, err)
@@ -367,7 +366,6 @@ func findFirstHardwareAddress() (node Node) {
 			if i.Flags&net.FlagUp != 0 && bytes.Compare(i.HardwareAddr, nil) != 0 {
 				// Don't use random as we have a real address
 				node = Node(i.HardwareAddr)
-				log.Println("uuid.findFirstHardwareAddress:", node)
 				break
 			}
 		}
